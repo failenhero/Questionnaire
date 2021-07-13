@@ -1,0 +1,29 @@
+<div class="main-container">
+  <div class="number-container">
+    <input
+      type="number"
+      min="1" max="100"
+      [(ngModel)]="value"
+      (click)="onClicked()"
+      #textInput>
+
+    <div class="arrows">
+      <button (click)="up()">
+          <mat-icon>keyboard_arrow_up</mat-icon>
+      </button>
+
+      <button (click)="down()">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <small
+    class="required-alert"
+    *ngIf="this.requiredField && textInput.value =='' && this.touched ">
+    Поле обязательно для заполнения
+  </small>
+</div>
+
+
+

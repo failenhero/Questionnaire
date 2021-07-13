@@ -1,0 +1,165 @@
+<form
+  [formGroup]="questionnaireForm">
+
+<div
+  class="questionnaire">
+
+
+  <h1 class="header">Анкета</h1>
+
+  <div class="questionnaire-item">
+
+    <div class="info info-center">
+      <label class="required">Имя</label>
+    </div>
+
+    <div class="form-field">
+
+      <app-test-input
+        [requiredField]="true"
+        formControlName="name">
+      </app-test-input>
+
+    </div>
+
+  </div>
+
+  <div class="questionnaire-item">
+
+    <div class="info info-center">
+      <label class="required">Возраст</label>
+    </div>
+
+    <div class="form-field">
+
+      <app-test-number
+        [requiredField]="true"
+        formControlName="age">
+      </app-test-number>
+
+    </div>
+
+  </div>
+
+  <div class="questionnaire-item">
+
+    <div class="info info-center">
+      <label class="required">Семейное положение</label>
+    </div>
+
+    <div class="form-field smaller-field">
+
+      <app-test-select
+        [selectItems]="familyStates"
+        formControlName="familyState">
+      </app-test-select>
+
+    </div>
+
+  </div>
+
+  <div class="questionnaire-item">
+
+    <div class="info info-center">
+      ВУЗ
+    </div>
+
+    <div class="form-field smaller-field">
+
+      <div
+       formArrayName="universities">
+       <div
+        class="input-with-btns"
+        *ngFor="let university of getUniversities()['controls']; let i = index">
+        <app-test-input
+          placeholder="Например, ВолгГУ"
+          formControlName="{{i}}"
+          style="margin-right: 0.5rem;">
+        </app-test-input>
+        <button
+          mat-mini-fab
+          *ngIf="getUniversities()['controls'].length > 1"
+          (click)="removeUniversity(i)"
+          style="margin-right: 0.5rem; margin-top: 1rem;">
+            X
+        </button>
+        <button
+          mat-mini-fab color="primary"
+          type="button"
+          class="addItemBtn"
+          *ngIf="i == getUniversities()['controls'].length-1"
+          (click)="addUniversity()"
+          style="margin-top: 1rem;">
+          <mat-icon>add</mat-icon>
+        </button>
+       </div>
+      </div>
+
+      <small class="underText">
+        Укажите заведения, в которых вы учились.
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <div class="questionnaire-item">
+
+    <div class="info info-center">
+      Место рождения
+    </div>
+
+    <div class="form-field smaller-field">
+
+      <app-test-select
+       [selectItems]="birthPlaces"
+       formControlName="birthPlace">
+      </app-test-select>
+
+    </div>
+
+  </div>
+
+  <div class="questionnaire-item">
+
+    <div class="info">
+      Навыки
+    </div>
+
+    <div class="form-field">
+
+      <app-test-checkbox
+        id="chechboxFormComp"
+        (checkboxClickedEvent)="checkboxRenewed($event)"
+        [optionsList]="abilities"
+        >
+      </app-test-checkbox>
+
+    </div>
+
+  </div>
+
+
+  <div class="questionnaire-item">
+
+    <div class="info">
+
+    </div>
+
+    <div class="form-field">
+
+      <button
+        class="submitButton"
+        type="button"
+        (click)="submitForm()"
+        [disabled]="questionnaireForm.invalid">
+        Отправить
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+</form>

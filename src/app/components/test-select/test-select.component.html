@@ -1,0 +1,11 @@
+<select
+  name="select"
+  class="decorated"
+  (change)="onCheckChange($event)">
+  <option
+    *ngFor="let item of selectItems"
+    [value]="item.text"
+    >
+      {{item.text}}
+  </option>
+</select>

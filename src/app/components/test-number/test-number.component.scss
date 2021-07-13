@@ -1,0 +1,43 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  font-size: 17px;
+  font-family: 'PT Sans', sans-serif;
+  margin-right: 0.5rem;
+  width: 70px;
+  max-width: 60%;
+  height: 44px;
+  max-height: 85%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.number-container {
+  display: inline-flex;
+  flex-direction: row;
+
+
+  //border: 1px solid black;
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  height: 38%;
+  width: 95%;
+}
+
+.required-alert {
+  color: red;
+}
